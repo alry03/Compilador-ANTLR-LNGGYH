@@ -1,9 +1,0 @@
-PROGRAMA TesteSimples;
-DECLARAR x : INTEGER;
-DECLARAR y : REAL;
-INICIO
-    LER(x);
-    y := x * 2.5;
-    IMPRIMIR(y);
-FIM
-.

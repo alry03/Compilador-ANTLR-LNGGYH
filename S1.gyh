@@ -1,7 +1,0 @@
-# Erro sintático: comando IMPRIMIR dentro do bloco DECLARAR
-[DECLARAR]
-x : INTEGER
-IMPRIMIR x
-[PROGRAMA]
-x := 2
-

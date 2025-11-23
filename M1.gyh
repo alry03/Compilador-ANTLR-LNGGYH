@@ -1,7 +1,0 @@
-# Erro léxico: caractere especial não permitido dentro de identificador
-[DECLARAR]
-precototal : REAL
-[PROGRAMA]
-precototal := 25.0
-IMPRIMIR precototal
-

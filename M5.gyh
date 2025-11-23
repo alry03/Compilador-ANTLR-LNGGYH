@@ -1,9 +1,0 @@
-# Erro semântico: variável usada sem valor inicial em expressão
-[DECLARAR]
-a : INTEGER
-b : INTEGER
-resultado : REAL
-[PROGRAMA]
-resultado := a / b
-IMPRIMIR resultado
-

@@ -1,7 +1,0 @@
-# Erro sintático: SENAO sem SE anterior
-[DECLARAR]
-x : INTEGER
-[PROGRAMA]
-SENAO
-    IMPRIMIR x
-

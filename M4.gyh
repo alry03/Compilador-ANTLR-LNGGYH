@@ -1,7 +1,0 @@
-# Erro semântico: condição com tipos não relacionáveis (REAL e CADEIA)
-[DECLARAR]
-preco : REAL
-[PROGRAMA]
-SE preco > "barato" ENTAO
-    IMPRIMIR preco
-
