@@ -1,3 +1,26 @@
+/*
+Alberto Pontiery De Moura Sartin Valadão a2552930
+Diogo Augusto Silvério Nascimento a2586460
+
+Exemplo de como rodar a aplicação:
+1 > Analisar arquivo
+2 > Executar exemplo
+3 > Sair
+> Opcao: 
+
+Digitar '1' como opção. Irá aparecer o seguinte prompt:
+
+"Digite o caminho do arquivo:"
+
+Deve ser digitado o exato nome do arquivo .gyh. Exemplo:
+
+Digite o caminho do arquivo: L1.gyh.
+
+Digitar '2' como opção irá rodar as análises e geração de um código já incluso na main do programa.
+
+Digitar '3' encerrará o programa.
+*/
+
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
@@ -195,20 +218,24 @@ public class Main {
             
             // === GERACAO DE CODIGO ===
             System.out.println("\n4. GERACAO DE CODIGO:");
-            GyhCGenerator gen = new GyhCGenerator(semantic.getTabela());
-            gen.visit(tree);
-            java.util.List<String> cc = gen.getCodigo();
-            if (cc.isEmpty()) {
-                System.out.println("Nenhum codigo C gerado.");
+            if (semantic.temErros()) {
+                System.out.println("Geracao de codigo abortada devido a erros semanticos.");
             } else {
-                System.out.println("Codigo C gerado:");
-                for (String line : cc) System.out.println("  " + line);
-                try {
-                    String destino = origem != null ? new java.io.File(origem).getName().replaceAll("(?i)\\.gyh$", ".c") : "out.c";
-                    java.nio.file.Files.write(java.nio.file.Paths.get(destino), String.join("\n", cc).getBytes());
-                    System.out.println("Arquivo '" + destino + "' salvo no diretorio do projeto.");
-                } catch (Exception e) {
-                    System.err.println("Falha ao salvar codigo C: " + e.getMessage());
+                GyhCGenerator gen = new GyhCGenerator(semantic.getTabela());
+                gen.visit(tree);
+                java.util.List<String> cc = gen.getCodigo();
+                if (cc.isEmpty()) {
+                    System.out.println("Nenhum codigo C gerado.");
+                } else {
+                    System.out.println("Codigo C gerado:");
+                    for (String line : cc) System.out.println("  " + line);
+                    try {
+                        String destino = origem != null ? new java.io.File(origem).getName().replaceAll("(?i)\\.gyh$", ".c") : "out.c";
+                        java.nio.file.Files.write(java.nio.file.Paths.get(destino), String.join("\n", cc).getBytes());
+                        System.out.println("Arquivo '" + destino + "' salvo no diretorio do projeto.");
+                    } catch (Exception e) {
+                        System.err.println("Falha ao salvar codigo C: " + e.getMessage());
+                    }
                 }
             }
 
