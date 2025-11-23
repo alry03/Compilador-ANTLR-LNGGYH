@@ -194,19 +194,20 @@ public class Main {
             
             // === GERACAO DE CODIGO ===
             System.out.println("\n4. GERACAO DE CODIGO:");
-            GyhCodeGenerator gen = new GyhCodeGenerator(semantic.getTabela());
+            GyhCGenerator gen = new GyhCGenerator(semantic.getTabela());
             gen.visit(tree);
-            java.util.List<String> bc = gen.getCodigo();
-            if (bc.isEmpty()) {
-                System.out.println("Nenhum bytecode gerado.");
+            java.util.List<String> cc = gen.getCodigo();
+            if (cc.isEmpty()) {
+                System.out.println("Nenhum codigo C gerado.");
             } else {
-                System.out.println("Bytecode gerado:");
-                for (String line : bc) System.out.println("  " + line);
+                System.out.println("Codigo C gerado:");
+                for (String line : cc) System.out.println("  " + line);
                 try {
-                    java.nio.file.Files.write(java.nio.file.Paths.get("out.bytecode"), String.join("\n", bc).getBytes());
-                    System.out.println("Arquivo 'out.bytecode' salvo no diretorio do projeto.");
+                    String destino = origem != null ? new java.io.File(origem).getName().replaceAll("(?i)\\.gyh$", ".c") : "out.c";
+                    java.nio.file.Files.write(java.nio.file.Paths.get(destino), String.join("\n", cc).getBytes());
+                    System.out.println("Arquivo '" + destino + "' salvo no diretorio do projeto.");
                 } catch (Exception e) {
-                    System.err.println("Falha ao salvar 'out.bytecode': " + e.getMessage());
+                    System.err.println("Falha ao salvar codigo C: " + e.getMessage());
                 }
             }
 
