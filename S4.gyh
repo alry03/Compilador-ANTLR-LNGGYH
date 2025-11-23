@@ -3,6 +3,6 @@
 a : INTEGER
 b : INTEGER
 [PROGRAMA]
-a := * b + 2
+a := - b + 2
 IMPRIMIR a
 

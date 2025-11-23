@@ -1,10 +1,7 @@
-# Erro semântico: variável usada fora do escopo (não declarada)
+# Erro léxico: caractere especial não permitido dentro de identificador
 [DECLARAR]
-x : INTEGER
+precototal : REAL
 [PROGRAMA]
-INICIO
-    LER x
-    IMPRIMIR x
-FINAL
-
+precototal := 25.0
+IMPRIMIR precototal
 

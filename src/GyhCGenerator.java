@@ -104,12 +104,7 @@ public class GyhCGenerator extends gyhlngBaseVisitor<TabelaSimbolos.Tipo> {
 
     @Override
     public TabelaSimbolos.Tipo visitBloco(gyhlngParser.BlocoContext ctx) {
-        emit("{");
-        indent++;
-        TabelaSimbolos.Tipo t = super.visitBloco(ctx);
-        indent--;
-        emit("}");
-        return t;
+        return super.visitBloco(ctx);
     }
 
     @Override
@@ -218,12 +213,7 @@ public class GyhCGenerator extends gyhlngBaseVisitor<TabelaSimbolos.Tipo> {
 
     @Override
     public TabelaSimbolos.Tipo visitSubAlgBr(gyhlngParser.SubAlgBrContext ctx) {
-        emit("{");
-        indent++;
-        TabelaSimbolos.Tipo t = super.visitSubAlgBr(ctx);
-        indent--;
-        emit("}");
-        return t;
+        return super.visitSubAlgBr(ctx);
     }
 
     @Override
