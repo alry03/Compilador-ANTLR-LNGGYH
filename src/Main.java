@@ -98,7 +98,8 @@ public class Main {
             String nomeUp = nomeArq.toUpperCase();
             boolean ehSintatico = nomeUp.startsWith("S");
             boolean ehSemantico = nomeUp.startsWith("M");
-            String pre = (ehSintatico || ehSemantico) ? removerComentariosHashSintatico(codigo) : removerComentariosHash(codigo);
+            boolean temColchetes = contemColchetes(codigo);
+            String pre = temColchetes ? removerComentariosHashSintatico(codigo) : removerComentariosHash(codigo);
             if (ehSintatico) {
                 String erroDecl = detectarComandoEmDeclarar(pre);
                 if (erroDecl != null) {
@@ -165,7 +166,7 @@ public class Main {
             ParserErrorListener parserErrorListener = new ParserErrorListener();
             parser.addErrorListener(parserErrorListener);
             
-            boolean usarBr = ehSintatico || ehSemantico || contemColchetes(pre);
+            boolean usarBr = ehSintatico || ehSemantico || temColchetes;
             ParseTree tree = usarBr ? parser.programaBr() : parser.programa();
             
             if (parserErrorListener.temErros()) {
