@@ -1,0 +1,28 @@
+INPUT_INT x
+INPUT_INT y
+LOAD x
+LOAD y
+PUSH_REAL 2.5
+MUL
+ADD
+STORE resultado
+LOAD x
+LOAD y
+GT
+STORE ativo
+LOAD ativo
+JMPF L_false_0
+LOAD resultado
+PRINT_REAL
+LABEL L_false_0
+LABEL L_start_2
+LOAD x
+PUSH_INT 10
+LT
+JMPF L_end_3
+LOAD x
+PUSH_INT 1
+ADD
+STORE x
+JMP L_start_2
+LABEL L_end_3
