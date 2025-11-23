@@ -1,3 +1,4 @@
+
 /*
 Alberto Pontiery De Moura Sartin Valadão a2552930
 Diogo Augusto Silvério Nascimento a2586460
@@ -86,26 +87,25 @@ public class Main {
     
     
     private static void executarExemplo() {
-        String codigoExemplo = 
-            "PROGRAMA ExemploCompleto;\n" +
-            "DECLARAR x, y : INTEGER;\n" +
-            "DECLARAR resultado : REAL;\n" +
-            "DECLARAR ativo : BOOLEAN;\n" +
+        String codigoExemplo =
+            "[DECLARAR]\n" +
+            "x : INTEGER\n" +
+            "y : INTEGER\n" +
+            "resultado : REAL\n" +
+            "ativo : BOOLEAN\n" +
+            "[PROGRAMA]\n" +
+            "LER x\n" +
+            "LER y\n" +
+            "resultado := x + y * 2.5\n" +
+            "ativo := x > y\n" +
+            "SE ativo ENTAO\n" +
             "INICIO\n" +
-            "    LER(x);\n" +
-            "    LER(y);\n" +
-            "    resultado := x + y * 2.5;\n" +
-            "    ativo := x > y;\n" +
-            "    SE ativo ENTAO\n" +
-            "    INICIO\n" +
-            "        IMPRIMIR(resultado);\n" +
-            "    FIM;\n" +
-            "    ENQTO x < 10 FACA\n" +
-            "    INICIO\n" +
-            "        x := x + 1;\n" +
-            "    FIM;\n" +
+            "    IMPRIMIR resultado\n" +
             "FIM\n" +
-            ".";
+            "ENQTO x < 10\n" +
+            "INICIO\n" +
+            "    x := x + 1\n" +
+            "FIM\n";
         
         System.out.println("Executando exemplo:");
         System.out.println(codigoExemplo);
@@ -121,8 +121,7 @@ public class Main {
             String nomeUp = nomeArq.toUpperCase();
             boolean ehSintatico = nomeUp.startsWith("S");
             boolean ehSemantico = nomeUp.startsWith("M");
-            boolean temColchetes = contemColchetes(codigo);
-            String pre = temColchetes ? removerComentariosHashSintatico(codigo) : removerComentariosHash(codigo);
+            String pre = removerComentariosHashSintatico(codigo);
             if (ehSintatico) {
                 String erroDecl = detectarComandoEmDeclarar(pre);
                 if (erroDecl != null) {
@@ -189,8 +188,7 @@ public class Main {
             ParserErrorListener parserErrorListener = new ParserErrorListener();
             parser.addErrorListener(parserErrorListener);
             
-            boolean usarBr = ehSintatico || ehSemantico || temColchetes;
-            ParseTree tree = usarBr ? parser.programaBr() : parser.programa();
+            ParseTree tree = parser.programaBr();
             
             if (parserErrorListener.temErros()) {
                 System.out.println("ERROS SINTATICOS ENCONTRADOS:");

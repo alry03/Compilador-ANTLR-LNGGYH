@@ -1,6 +1,7 @@
 #include <stdio.h>
 int main(void) {
-    int x, y;
+    int x;
+    int y;
     double resultado;
     int ativo;
     scanf("%d", &x);
